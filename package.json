@@ -1,0 +1,31 @@
+{
+  "name": "hotelsinberlin",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "importData": "npx ts-node src/scripts/seedHotelsInfo.ts",
+    "lint": "eslint --ext .js,.ts .",
+    "lint--fix": "npm run lint -- --fix",
+    "format": "prettier --write ."
+  },
+  "author": "rp",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.14.0",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.2",
+    "winston": "^3.8.2"
+  }
+}
