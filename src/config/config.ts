@@ -2,13 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const {
-  MONGO_USERNAME,
-  MONGO_PASSWORD,
-  MONGO_DB_HOST,
-  MONGO_DB_PORT,
-  SERVER_PORT
-} = process.env;
+const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_DB_HOST, MONGO_DB_PORT, SERVER_PORT } = process.env;
 
 const MONGO_URL = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_DB_HOST}:${MONGO_DB_PORT}/hotelsInfo${process.env.MONGO_AUTHSOURCE}`;
 

@@ -1,4 +1,3 @@
-
 interface IDeal {
   expireTime: string;
   headline: ITranslation;
@@ -10,12 +9,11 @@ interface IImages {
   caption: ITranslation;
 }
 
-
 interface ITranslation {
-  'en-US': string,
-  'de-DE': string,
-  'es-ES': string,
-  'fr-FR': string
+  'en-US': string;
+  'de-DE': string;
+  'es-ES': string;
+  'fr-FR': string;
 }
 
 export interface IHotel {
@@ -27,7 +25,7 @@ export interface IHotel {
   address: ITranslation;
   city: ITranslation;
   description: ITranslation;
-  benefits: {text: ITranslation}[];
+  benefits: { text: ITranslation }[];
   deals: IDeal[];
   images: IImages[];
   lat: number;

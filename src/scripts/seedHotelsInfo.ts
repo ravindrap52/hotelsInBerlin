@@ -11,9 +11,7 @@ async function start() {
     .then(() => {
       console.log('connected to the Database');
     })
-    .catch(error =>
-      console.log(`Error while connecting to the Database ${error}`)
-    );
+    .catch(error => console.log(`Error while connecting to the Database ${error}`));
   for (const hotel of hotelsJson) {
     try {
       await Hotel.create(hotel);
