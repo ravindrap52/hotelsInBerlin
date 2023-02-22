@@ -9,3 +9,7 @@ npm install
 ```
 npm run importData
 ```
+## To start the application
+```
+npm run start
+```

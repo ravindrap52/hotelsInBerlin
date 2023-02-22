@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "nodemon --config nodemon.json src/app.ts",
     "importData": "npx ts-node src/scripts/seedHotelsInfo.ts",
     "lint": "eslint --ext .js,.ts .",
     "lint--fix": "npm run lint -- --fix",
