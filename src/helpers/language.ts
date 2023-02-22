@@ -1,3 +1,4 @@
+// test cases passed :)
 import hotels from '../scripts/hotels.json';
 
 const allLocales: string[] = ['en-US', 'de-DE', 'fr-FR', 'es-ES'];
