@@ -68,4 +68,27 @@ router.route('/').get(async (req: Request<string, string, string, IRequest>, res
   }
 });
 
+/** Returns Hotel based on hotelId */
+router.route('/:hotelId?').get(async (req: Request, res: Response) => {
+  const { hotelId } = req.params;
+  const lang = req.query.lang as string;
+  try {
+    const hotel = (await Hotel.find(
+      { id: hotelId },
+      { ...baseProjection, deals: 1, images: 1 }
+    ).lean()) as Array<IResult>;
+    if (!Object.keys(hotel).length) {
+      return res.json(errorHandler(false, `Hotel with Id ${hotelId} is Not Available`, null));
+    }
+    // formatting data based on lang.
+    const hotelList = hotelsList(hotel, lang);
+    return res.json({
+      sucess: true,
+      result: hotelList
+    });
+  } catch (error) {
+    return res.json(errorHandler(false, error.message, null));
+  }
+});
+
 export default router;
