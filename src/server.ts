@@ -4,6 +4,8 @@ import { config } from './config/config';
 import { logger } from './helpers/logging';
 import httpServer from 'http';
 
+import controllers from './controllers';
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,6 +49,9 @@ app.use((req, res, next) => {
 
 /** Healthcheck */
 app.get('/ping', (req, res) => res.status(200).json({ status: 'success' }));
+
+// Routing: register all routes in the controllers module.
+app.use(controllers);
 
 /** Error handling for non matching routes*/
 app.use((req, res, next) => {

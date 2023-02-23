@@ -13,9 +13,9 @@ export const distanceToCenter = ([lat1, lon1]: number[], [lat2, lon2]: number[],
   const coLatitudes =
     Math.pow(Math.sin(distanceLatitude / 2), 2) +
     Math.pow(Math.sin(distanceLongitude / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
-  const latitudSeperation = 2 * Math.asin(Math.sqrt(coLatitudes));
+  const latitudeSeperation = 2 * Math.asin(Math.sqrt(coLatitudes));
 
-  let finalDistance = RADIUS_OF_EARTH_IN_KM * latitudSeperation;
+  let finalDistance = RADIUS_OF_EARTH_IN_KM * latitudeSeperation;
 
   if (convertToMiles) {
     finalDistance /= 1.60934;
