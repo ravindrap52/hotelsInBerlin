@@ -55,7 +55,7 @@ router.route('/').get(async (req: Request<string, string, string, IRequest>, res
     }
   } else {
     try {
-      const hotels = (await Hotel.find({}, { ...baseProjection, deals: 1, images: 1 })) as Array<IResult>;
+      const hotels = (await Hotel.find({}, { ...baseProjection, deals: { $slice: 1 }, images: { $slice: 1 } })) as Array<IResult>;
       // formatting data based on lang.
       const hotelList = hotelsList(hotels, lang);
       return res.json({
