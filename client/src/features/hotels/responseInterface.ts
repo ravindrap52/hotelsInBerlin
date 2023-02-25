@@ -18,5 +18,3 @@ export interface IResponse {
   images: { url: string; caption: ITranslation }[];
 }
 [];
-
-

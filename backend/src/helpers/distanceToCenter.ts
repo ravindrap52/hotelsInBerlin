@@ -20,5 +20,5 @@ export const distanceToCenter = ([lat1, lon1]: number[], [lat2, lon2]: number[],
   if (convertToMiles) {
     finalDistance /= 1.60934;
   }
-  return Number(finalDistance.toFixed());
+  return Number(finalDistance.toFixed(1));
 };
