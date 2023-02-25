@@ -1,21 +1,29 @@
-import { FC } from "react";
+import { useAppSelector } from "../app/hooks";
+import { status, error, allHotels } from "../features/hotels/hotelsSlice";
+
 import { ListItems } from "../components/molecules/ListItems";
 
-const data = [
-  {
-    id: "2384",
-    name: "test1",
-    address: "test",
-    distance: "3KM",
-  },
-  {
-    id: "2385",
-    name: "test1",
-    address: "test",
-    distance: "3KM",
-  },
-];
+//TODO improve styling
+export const ListOfHotels = () => {
+  const hotels = useAppSelector(allHotels);
+  const loadingStatus = useAppSelector(status);
+  const errorMessage = useAppSelector(error);
 
-export const ListOfHotels: FC = () => {
-  return <ListItems listItems={data} />;
+  let content = null;
+  if (loadingStatus === "loading") {
+    content = <div>loading...</div>;
+  } else if (loadingStatus === "succeeded") {
+    content = hotels.result.map((hotel) => {
+      return <ListItems key={hotel.id} item={hotel} />;
+    });
+  } else if (loadingStatus === "failed") {
+    content = <div>{errorMessage}</div>;
+  }
+
+  return (
+    <section>
+      <p>List of Hotels</p>
+      {content}
+    </section>
+  );
 };

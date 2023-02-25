@@ -1,21 +1,20 @@
 import { FC } from "react";
+import { IResponse } from "../../features/hotels/responseInterface";
 
 interface IListProps {
-  listItems: Array<{ [key: string]: string }>;
+  item: IResponse;
 }
-
-export const ListItems: FC<IListProps> = ({ listItems }): JSX.Element => {
+//TODO create a image component and try to use swiper component in there.
+export const ListItems: FC<IListProps> = ({item} ): JSX.Element => {
   return (
     <div className="m-4">
-      {listItems.map((item) => {
-        return (
-          <div
+      <div
             className="max-w-sm rounded overflow-hidden shadow-lg mb-2"
             key={item.id}
           >
             <img
               className="w-full"
-              src="https://rt-hotel-images-prod.s3.amazonaws.com/2384_IcePortal_0_thumb.jpg"
+              src={item.images[0].url}
               alt="Sunset in the mountains"
             />
             <div className="px-6 py-4">
@@ -24,8 +23,6 @@ export const ListItems: FC<IListProps> = ({ listItems }): JSX.Element => {
               <p className="text-gray-700 text-base">{item.distance}</p>
             </div>
           </div>
-        );
-      })}
     </div>
   );
 };
