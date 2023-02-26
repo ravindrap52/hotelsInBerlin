@@ -22,6 +22,7 @@ export const HotelDetails = (): JSX.Element => {
   useEffect(() => {
     dispatch(getHotelByHotelID({ hotelId, locale }));
   }, []);
+
   return (
     <section>
       {result && (
