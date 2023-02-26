@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<ListOfHotels />}></Route>
-      <Route path="/hotelDetails/:id" element={<HotelDetails />}></Route>
+      <Route path="/hotelDetails/:hotelId" element={<HotelDetails />}></Route>
       <Route path="*" element={<NoMatch />} />
     </Routes>
   );

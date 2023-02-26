@@ -42,7 +42,9 @@ export const ListOfHotels = () => {
       <label
         htmlFor="languages"
         className="block mb-2 text-sm font-medium text-gray-900"
-      >Select Language</label>
+      >
+        Select Language
+      </label>
       <select
         id="languages"
         value={defaultLocale}
@@ -54,7 +56,7 @@ export const ListOfHotels = () => {
         <option value="fr-FR">France</option>
         <option value="es-ES">Spanish</option>
       </select>
-      {content}
+      <div className="flex flex-wrap">{content}</div>
     </section>
   );
 };

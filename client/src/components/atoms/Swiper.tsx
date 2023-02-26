@@ -3,15 +3,19 @@ import { Navigation, Pagination, Autoplay } from "swiper";
 
 // Import Swiper styles
 import "swiper/swiper.css";
+import { FC } from "react";
 
-export default function ImageGallery() {
+interface IImages {
+  images: Array<{ [key: string]: string }>;
+}
+
+export const ImageGallery: FC<IImages> = ({ images }): JSX.Element => {
   return (
     <Swiper
       spaceBetween={30}
       centeredSlides={true}
       autoplay={{
         delay: 2500,
-        disableOnInteraction: false,
       }}
       pagination={{
         clickable: true,
@@ -20,35 +24,13 @@ export default function ImageGallery() {
       modules={[Autoplay, Pagination, Navigation]}
       className="mySwiper"
     >
-      <SwiperSlide>
-        <img
-          className="w-full"
-          src="https://rt-hotel-images-prod.s3.amazonaws.com/2384_IcePortal_0_thumb.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          className="w-full"
-          src="https://rt-hotel-images-prod.s3.amazonaws.com/2384_IcePortal_0_thumb.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          className="w-full"
-          src="https://rt-hotel-images-prod.s3.amazonaws.com/2384_IcePortal_0_thumb.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          className="w-full"
-          src="https://rt-hotel-images-prod.s3.amazonaws.com/2384_IcePortal_0_thumb.jpg"
-          alt=""
-        />
-      </SwiperSlide>
-      ...
+      {images.map((image, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <img className="w-full" src={image.url} alt={image.caption} />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
-}
+};
