@@ -18,3 +18,22 @@ export interface IResponse {
   images: { url: string; caption: ITranslation }[];
 }
 [];
+
+export interface IHotelsState {
+  hotels: Array<{ [key: string]: string }>;
+  status: "idle" | "pending" | "succeeded" | "failed";
+  searchStatus: "idle" | "pending" | "succeeded" | "failed";
+  error: string | null;
+  hotel: Array<{ [key: string]: string }>;
+  searchedHotel: Array<{ [key: string]: string }>;
+}
+
+export interface IHotel {
+  hotelId: string;
+  locale: string;
+}
+
+export interface ISearchHotel {
+  searchTerm: string;
+  locale?: string;
+}

@@ -14,7 +14,7 @@ export const SearchInput: FC<ISearchInput> = ({
       type="text"
       value={searchValue}
       onChange={(e) => setSearchValue(e.target.value)}
-      placeholder="Search"
+      placeholder="Search by hotel name"
     />
   );
 };

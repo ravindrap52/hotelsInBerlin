@@ -1,26 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IHotelsState, IHotel, ISearchHotel } from "./responseInterface";
 
 const hotels_URL = "http://localhost:3000/v1/recruiting/hotels";
-
-interface hotelsState {
-  hotels: Array<{ [key: string]: string }>;
-  status: "idle" | "pending" | "succeeded" | "failed";
-  error: string | null;
-  hotel: Array<{ [key: string]: string }>;
-}
-
-interface IHotel {
-  hotelId: string;
-  locale: string;
-}
 
 const initialState = {
   hotels: [],
   status: "idle",
+  searchStatus: "idle",
   error: null,
   hotel: [],
-} as hotelsState;
+  searchedHotel: [],
+} as IHotelsState;
 
 /* get all hotels */
 export const getAllHotels = createAsyncThunk(
@@ -37,6 +28,18 @@ export const getHotelByHotelID = createAsyncThunk(
   async ({ hotelId, locale }: IHotel) => {
     const response = await axios.get(
       `${hotels_URL}/${hotelId}/?lang=${locale}`
+    );
+    return response.data;
+  }
+);
+
+/* search hotel by hotelName */
+export const searchtHotelByHotelName = createAsyncThunk(
+  "hotels/searchtHotelByHotelName",
+  async ({ searchTerm, locale }: ISearchHotel) => {
+    console.log(searchTerm);
+    const response = await axios.get(
+      `${hotels_URL}/?search=${searchTerm}&lang=${locale}`
     );
     return response.data;
   }
@@ -75,13 +78,31 @@ const hotelSlice = createSlice({
       .addCase(getHotelByHotelID.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message as string;
+      })
+      .addCase(searchtHotelByHotelName.pending, (state) => {
+        state.searchStatus = "pending";
+      })
+      .addCase(searchtHotelByHotelName.fulfilled, (state, action) => {
+        state.searchStatus = "succeeded";
+        state.searchedHotel = action.payload;
+      })
+      .addCase(searchtHotelByHotelName.rejected, (state, action) => {
+        state.searchStatus = "failed";
+        state.error = action.error.message as string;
       });
   },
 });
 
+// to get all hotels
 export const allHotels = (state) => state.hotels.hotels;
-export const status = (state) => state.hotels.status;
-export const error = (state) => state.hotels.error;
+// hotel by hotelID
 export const hotel = (state) => state.hotels.hotel;
+// hotel by hotelname
+export const hotelFound = (state) => state.hotels.searchedHotel;
+
+export const status = (state) => state.hotels.status;
+// search status
+export const searchStatus = (state) => state.hotels.searchStatus;
+export const error = (state) => state.hotels.error;
 
 export default hotelSlice.reducer;
