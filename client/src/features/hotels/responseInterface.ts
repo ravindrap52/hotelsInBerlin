@@ -37,3 +37,8 @@ export interface ISearchHotel {
   searchTerm: string;
   locale?: string;
 }
+
+export interface IFilter {
+  distanceFilter: { minDistance: number; maxDistance: number };
+  priceFilter: { minPrice: number; maxPrice: number };
+}

@@ -16,9 +16,7 @@ export const Home = () => {
         />
         <DropDown />
       </div>
-      <div className="flex flex-wrap">
-        <ListOfHotels searchTerm={searchText} />
-      </div>
+      <ListOfHotels searchTerm={searchText} />
     </section>
   );
 };

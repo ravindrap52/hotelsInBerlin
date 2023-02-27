@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IHotelsState, IHotel, ISearchHotel } from "./responseInterface";
+import {
+  IHotelsState,
+  IHotel,
+  ISearchHotel,
+  IFilter,
+} from "./responseInterface";
 
 const hotels_URL = "http://localhost:3000/v1/recruiting/hotels";
 
@@ -104,5 +109,23 @@ export const status = (state) => state.hotels.status;
 // search status
 export const searchStatus = (state) => state.hotels.searchStatus;
 export const error = (state) => state.hotels.error;
+
+// applying filters
+
+export const applyFilters = (
+  hotels,
+  { distanceFilter, priceFilter }: IFilter
+) => {
+  return hotels
+    .filter((hotel) => {
+      return (
+        hotel.distance <= distanceFilter.minDistance &&
+        hotel.distance <= distanceFilter.maxDistance
+      );
+    })
+    .filter((data) => {
+      return data.minPrice <= priceFilter.maxPrice;
+    });
+};
 
 export default hotelSlice.reducer;
