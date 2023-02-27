@@ -1,22 +1,25 @@
 # hotelsInBerlin
 
-## Project setup
-
-```
-npm install
-```
-
-## To dump the data run
+## To dump the data run (this step is mandatory)
 
 ```
 npm run importData
 ```
 
-## To start the application
+## Installation of the local development
 
 ```
-npm run start
+cd backend
+npm i
+npm run start 
+cd ..
+cd client
+npm i
+npm run dev
 ```
+
+
+
 
 ## To test API Endpoints via Postman
 
