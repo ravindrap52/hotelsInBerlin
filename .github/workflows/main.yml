@@ -17,6 +17,7 @@ jobs:
       - name: lint
         run: npm run lint
   lint-fronend:
+    needs: lint-backend
     runs-on: ubuntu-latest
     steps:
       - name: fetch code
