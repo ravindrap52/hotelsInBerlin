@@ -1,0 +1,33 @@
+name: ci-for-client-server
+on: workflow_dispatch
+jobs:
+  lint-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch code
+        uses: actions/checkout@v3
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - name: navigate-to-backend
+        run: cd backend
+      - name: install-dependencies
+        run: npm ci
+      - name: lint
+        run: npm run lint
+  lint-fronend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetch code
+        uses: actions/checkout@v3
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - name: navigate-to-frontend
+        run: cd client
+      - name: install-dependencies
+        run: npm ci
+      - name: lint
+        run: npm run lint
