@@ -13,8 +13,6 @@ jobs:
       - name: navigate-to-backend
         working-directory: ./backend
         run: npm ci
-      - name: install-dependencies
-        run: npm install
       - name: lint
         run: npm run lint
   lint-fronend:
@@ -29,8 +27,6 @@ jobs:
           node-version: latest
       - name: navigate-to-frontend
         working-directory: ./client
-        run: cd client
-      - name: install-dependencies
-        run: npm install
+        run: npm ci
       - name: lint
         run: npm run lint
