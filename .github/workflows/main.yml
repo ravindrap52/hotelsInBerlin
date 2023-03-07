@@ -13,7 +13,7 @@ jobs:
       - name: navigate-to-backend
         run: cd backend
       - name: install-dependencies
-        run: npm ci
+        run: npm install
       - name: lint
         run: npm run lint
   lint-fronend:
@@ -29,6 +29,6 @@ jobs:
       - name: navigate-to-frontend
         run: cd client
       - name: install-dependencies
-        run: npm ci
+        run: npm install
       - name: lint
         run: npm run lint
